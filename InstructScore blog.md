@@ -9,7 +9,12 @@ category:
 ---
 
 How can we more accurately and comprehensively evaluate text generation models?
+Reading Time: About 10 minutes.
+
 <!-- more -->
+
+Paper：<https://arxiv.org/abs/2305.14282>
+
 ## Introduction
 Text generation is a vital aspect of natural language processing (NLP), involving tasks like story generation, summarization, and dialogue systems. Evaluating these models has always been challenging, as traditional methods often lack interpretations of their predictions or fail to connect the scores to specific flaws in the generated text. INSTRUCTSCORE, a novel approach to evaluating text generation models, aims to bridge this gap by providing explainable feedback without relying on human-annotated data. This blog post delves into the mechanics of INSTRUCTSCORE and its implications for the NLP community.
 
