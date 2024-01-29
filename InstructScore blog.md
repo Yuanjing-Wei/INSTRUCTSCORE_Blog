@@ -22,15 +22,17 @@ Text generation is a vital aspect of natural language processing (NLP), involvin
 INSTRUCTSCORE stands out by providing explainable, detailed feedback on the performance of text generation models. Unlike conventional evaluation metrics that offer a single score, INSTRUCTSCORE provides both a numerical score and a human readable diagnostic report, including error location, error type, severity level, and score justification. This allows developers and researchers to understand not just how well their model is performing, but also in which specific areas it excels or needs improvement.
 
 The core idea behind INSTRUCTSCORE is to align the evaluation process more closely with human judgment. Traditional metrics like BLEU or ROUGE rely heavily on reference texts and can often miss the subtleties of human-like text generation. INSTRUCTSCORE, on the other hand, employs a more holistic approach, considering factors that are more aligned with human perceptions of quality and fluency in text.
+## Problem Definition
 
 ## Methodology
-The methodology behind INSTRUCTSCORE involves a multi-dimensional evaluation framework. Each dimension corresponds to a critical aspect of text quality:
 
-Grammatical Correctness: Assessing the syntactical and grammatical accuracy of the generated text.
-Coherence: Evaluating how well the text flows logically and maintains consistency throughout.
-Relevance: Measuring the pertinence of the content to the given context or prompt.
-Creativity: Gauging the novelty and originality of the text.
-For each dimension, INSTRUCTSCORE utilizes a combination of automated metrics and human evaluation. The automated metrics are designed to mimic human judgment as closely as possible, using advanced algorithms that go beyond simple word overlap with reference texts.
+### Learning with Guided Error and Explanation Synthesis
+
+### Auto-Identifying Failure Modes of Metric Output
+
+### Refinement with Meta-Feedback
+
+## Experiment
 
 ## Applications and Implications
 INSTRUCTSCORE can be particularly beneficial in refining text generation models. By pinpointing specific areas of strength and weakness, developers can tailor their approach to model improvement. This can lead to more efficient and targeted model development, ultimately resulting in more human-like and effective text generation systems.
