@@ -36,7 +36,8 @@ Overall, the process consists of the following steps:
 3. These reports are used for further fine-tuning of the Exp-Generator, refining its output for enhanced accuracy and reliability.
 
 
-![Screenshot (2129)](https://github.com/Yuanjing-Wei/random/assets/77601741/7cc3d0b5-661e-4675-bcde-5845729749aa)
+![Screenshot (2129)](https://github.com/Yuanjing-Wei/random/assets/77601741/982d6c04-7e51-4562-90f9-5c6b6ac20e0a)
+
 
 
 ### Explanation Synthesis
