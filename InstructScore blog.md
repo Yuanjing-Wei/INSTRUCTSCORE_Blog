@@ -34,7 +34,10 @@ Overall, the process consists of the following steps:
 1. Extracting explainable knowledge from a large-scale, instruction-following model to train the Exp-Generator.
 2. The generated diagnostic reports are then analyzed to identify common failure modes, which are further evaluated by GPT-4. Feedback from GPT-4 is converted into alignment scores, guiding the selection of the most accurate diagnostic reports.
 3. These reports are used for further fine-tuning of the Exp-Generator, refining its output for enhanced accuracy and reliability.
-![Screenshot (2129)](https://github.com/Yuanjing-Wei/random/assets/77601741/505a3d97-dfa5-44b1-8bfd-9f1d7987883a)
+
+
+![Screenshot (2129)](https://github.com/Yuanjing-Wei/random/assets/77601741/7cc3d0b5-661e-4675-bcde-5845729749aa)
+
 
 ### Explanation Synthesis
 In this step, GPT-4 is leveraged to extract representative explainable knowledge that can greatly contribute to the subsequent Exp-Generator learning process.
