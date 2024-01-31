@@ -61,12 +61,8 @@ The human evaluation focused on the model’s alignment before and after self-tr
 ### Summary
 The experiments underscored INSTRUCTSCORE's effectiveness in providing detailed and accurate evaluations across a range of natural language generation tasks. Its ability to adapt to different domains and tasks, coupled with its refined alignment with human expectations, highlights its potential as a versatile and reliable evaluation tool in the field of NLP.
 
-## Applications and Implications
-INSTRUCTSCORE can be particularly beneficial in refining text generation models. By pinpointing specific areas of strength and weakness, developers can tailor their approach to model improvement. This can lead to more efficient and targeted model development, ultimately resulting in more human-like and effective text generation systems.
 
-Furthermore, INSTRUCTSCORE's approach to evaluation can significantly contribute to the broader understanding of what constitutes "good" generated text. This understanding is crucial as we continue to integrate AI into more aspects of our digital lives, especially in areas like chatbots, virtual assistants, and automated content creation.
-
-## Limitations
+## Future Improvements
 While INSTRUCTSCORE represents a significant advancement in text generation evaluation, it is not without limitations. The complexity of the evaluation process means that it may require more resources and time compared to traditional methods. Additionally, the reliance on human judgment for certain aspects of the evaluation could introduce subjectivity into the process.
 
 ## Conclusion
