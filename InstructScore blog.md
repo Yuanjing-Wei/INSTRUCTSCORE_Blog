@@ -34,19 +34,30 @@ Overall, the process consists of the following steps:
 3. These reports are used for further fine-tuning of the Exp-Generator, refining its output for enhanced accuracy and reliability.
 
 
-![Screenshot (2129)](https://github.com/Yuanjing-Wei/random/assets/77601741/982d6c04-7e51-4562-90f9-5c6b6ac20e0a)
+<p align="center"><img src="./figure2.png" alt="figure2"/></p>
 
 
 
 ### Explanation Synthesis
-In this step, GPT-4 is leveraged to extract representative explainable knowledge that can greatly contribute to the subsequent Exp-Generator learning process.
-Given carefully desigend prompt specifying the number of errors, error types, and severity labels, GPT-4 is used to construct a candidate output with the specified error descriptions and an explanation for this error annotation. In cases where the evaluation task involves multiple aspects, different error types are allocated to each specific dimension. To reduce the model's dependence on the lexical and structural similarities between the generated text and the original, we direct GPT-4 to rephrase the original text, thus creating a pseudo-reference sentence. This procedure creates synthetic data that demonstrates the relationship between the variables (x, y) and (t, l, se, e).
+In this step, GPT-4 is leveraged to extract representative explainable knowledge that can greatly contribute to the subsequent Exp-Generator learning process. Given carefully desigend prompt specifying the number of errors, error types, and severity labels, GPT-4 is used to construct a candidate output with the specified error descriptions and an explanation for this error annotation. 
+
+<p align="center"><img src="./table1.png" alt="table1"/></p>
+
+In cases where the evaluation task involves multiple aspects, different error types are allocated to each specific dimension. To reduce the model's dependence on the lexical and structural similarities between the generated text and the original, we direct GPT-4 to rephrase the original text, thus creating a pseudo-reference sentence. This procedure creates synthetic data that demonstrates the relationship between the variables (x, y) and (t, l, se, e).
 
 The Exp-Generator is trained using this specially constructed data. Initially, we utilize LLaMA for the Exp-Generator due to its open-source availability and its efficacy in both comprehension and generation tasks. The training involves feeding the Exp-Generator with the pseudo-reference (y) and the candidate text (x) as inputs, and it outputs a diagnostic report detailing the error type (t), location (l), severity (se), and explanation (e). An illustrative example of this can be seen in Figure 2. The training objective is mathematically formulated as L(t, l, se, e, x, y) = − log P(t, l, se, e|y, x; θ), where θ represents the trainable parameters of the Exp-Generator.
 ### Auto-Identifying Failure Modes of Metric Output
-The diagnostic report plays a crucial role in text quality explanation. However, it's recognized that the model might not always produce accurate explanations, leading to what are termed as failure modes. These failure modes are classified into two categories: global and local. Global failures affect all four fields of the diagnostic report - error type, location, major/minor classification, and explanation - while local failures impact only one specific field. 
+The diagnostic report plays a crucial role in text quality explanation. However, it's recognized that the model might not always produce accurate explanations, leading to what are termed as failure modes. These failure modes are classified into two categories: global and local as shown in table 2. Global failures affect all four fields of the diagnostic report - error type, location, major/minor classification, and explanation - while local failures impact only one specific field. 
 
-Identifying the failure modes ideally would require human annotation but is not feasible for every instance. Instead, GPT-4’s capabilities in information extraction, parsing, and semantic understanding are leveraged to transform complex queries into simpler yes/no questions, aiding in the identification of these failure modes.
+<p align="center"><img src="./table2.png" alt="table2"/></p>
+
+Table 3 demonstrate one failure mode M4:
+
+<p align="center"><img src="./table3.png" alt="table3"/></p>
+
+Identifying the failure modes ideally would require human annotation but is not feasible for every instance. Instead, GPT-4’s capabilities in information extraction, parsing, and semantic understanding are leveraged to transform complex queries into simpler yes/no questions, aiding in the identification of these failure modes. Here is a detailed example of the prompt query for checking M1-M6 and G1-G4:
+
+<p align="center"><img src="./table4.png" alt="table4"/></p>>
 
 To illustrate, GPT-4 is prompted to dissect the explanations into pairs of incorrect and correct phrases and identify the error span within the text. This process helps in verifying the accuracy of error locations and explanations and identifying instances of multiple errors within a single location. The identified failure modes are then translated into alignment scores, providing a quantitative measure of the diagnostic report's accuracy.
 
@@ -62,13 +73,40 @@ Our experiments aimed to address six key research questions, focusing on INSTRUC
 ### Implementation and Evaluation
 We used GPT-4 as our base for implicit evaluation knowledge and LLaMA-7B for training initialization. Our data set, drawn from diverse domains, was utilized to tailor the model to specific task domains. We defined four evaluation scenarios and trained separate checkpoints for each, ensuring coverage of diverse text domains. The performance of INSTRUCTSCORE was assessed using Segment-level Kendall and Pearson correlations (should I introduce each of them??) between human and metric outputs. Human annotators were employed to assess the alignment of our model before and after refinement, evaluating based on predefined failure mode criteria.
 ### Main Results
-INSTRUCTSCORE showed robust performance across various tasks and domains. It significantly outperformed all other unsupervised metrics in 8 out of 9 tasks and was on par with or even surpassed some supervised metrics that trained over direct assessment data (DA). It also surpassed all unsupervised metrics in all domains except GPT-3.5 and GPT-4 baselines in the Chat domain. However, in the News domain, its performance was less effective compared to SOTA metrics like COMET22 and Metric-XXL. This gap can be attributed to the supervised data distribution in these models, specifically tailored for the News domain. Moreover, it outperformed all unsupervised learned metrics and even exceeded BLEURT in three out of five dimensions. This highlights its capability for nuanced, multi-dimensional evaluation of NLG tasks. Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
+INSTRUCTSCORE showed robust performance across various tasks and domains. It significantly outperformed all other unsupervised metrics in 8 out of 9 tasks and was on par with or even surpassed some supervised metrics that trained over direct assessment data (DA).
+
+<p align="center"><img src="./table5.png" alt="table5"/></p>
+
+It also surpassed all unsupervised metrics in all domains except GPT-3.5 and GPT-4 baselines in the Chat domain. However, in the News domain, its performance was less effective compared to SOTA metrics like COMET22 and Metric-XXL. This gap can be attributed to the supervised data distribution in these models, specifically tailored for the News domain. 
+
+<p align="center"><img src="./figure3.png" alt="figure3"/></p>
+
+Moreover, it outperformed all unsupervised learned metrics and even exceeded BLEURT in three out of five dimensions. This highlights its capability for nuanced, multi-dimensional evaluation of NLG tasks. 
+
+<p align="center"><img src="./figure4.png" alt="figure4"/></p>
+
+Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
+
+<p align="center"><img src="./figure5.png" alt="figure5"/></p>
+
 ### Quantitative Analysis
 #### Non-English Language Performance
 INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models, COMET22, or BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
 
+<p align="center"><img src="./figure6.png" alt="figure6"/></p>
+
 #### Impact of Automatic critique and Self-training
-The human evaluation focused on the model’s alignment before and after self-training, demonstrating significant reductions in global and local failure modes. Notably, occurrences of global failures decreased by over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences. While there was a slight increase in one type of local failure (M6), this was attributed to the transformation of some global failures into local ones. Precision and recall of its annotations also improved markedly, with the precision of explanations increasing from 75.6% to 86.1%, and recall from 81.9% to 85.0%.
+The human evaluation focused on the model’s alignment before and after self-training, demonstrating significant reductions in global and local failure modes. Notably, occurrences of global failures decreased by over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences. While there was a slight increase in one type of local failure (M6), this was attributed to the transformation of some global failures into local ones. 
+
+<p align="center"><img src="./figure7.png" alt="figure7"/></p>
+
+Importantly, these refinements led to a 0.106 absolute gain in human alignment scores, maintaining consistent performance in both Kendall and Pearson correlations. This enhancement indicates that INSTRUCTSCORE, post-refinement, is more aligned with human evaluators' assessments.
+
+<p align="center"><img src="./table6.png" alt="table6"/></p>
+
+Precision and recall of its annotations also improved markedly, with the precision of explanations increasing from 75.6% to 86.1%, and recall from 81.9% to 85.0%.
+
+<p align="center"><img src="./table7.png" alt="table7"/></p>
 
 ### Summary
 The experiments underscored INSTRUCTSCORE's effectiveness in providing detailed and accurate evaluations across a range of natural language generation tasks. Its ability to adapt to different domains and tasks, coupled with its refined alignment with human expectations, highlights its potential as a versatile and reliable evaluation tool in the field of NLP.
