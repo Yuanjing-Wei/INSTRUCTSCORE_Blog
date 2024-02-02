@@ -9,11 +9,13 @@ category:
 ---
 
 How can we more accurately and comprehensively evaluate text generation models?
+
 Reading Time: About 10 minutes.
 
-<!-- more -->
+
 
 Paper：<https://arxiv.org/abs/2305.14282>
+
 Code: <https://github.com/xu1998hz/InstructScore_SEScore3>
 
 ## Introduction
