@@ -98,7 +98,7 @@ Furthermore, INSTRUCTSCORE outperformed all unsupervised learned metrics and eve
 
 Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
 
-<p align="center"><img src="./figure5.png" alt="figure5" width="700"/></p>
+<p align="center"><img src="./figure5.png" alt="figure5" width="750"/></p>
 
 ### Quantitative Analysis
 #### Non-English Language Performance
