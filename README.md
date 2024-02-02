@@ -3,7 +3,7 @@ title: INSTRUCTSCORE -- Revolutionizing Text Generation Model Evaluation with Ex
 author: Yuanjing Wei
 date: 2024-02-01
 tag:
- - LLM Evaluation
+ - NLG Evaluation
  - Pseudo Labeling
  - Instruction Finetuning
 category:
