@@ -104,7 +104,7 @@ Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks wi
 #### Non-English Language Performance
 INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models or supervised metrics like COMET22 and BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
 
-<p align="center"><img src="./figure6.png" alt="figure6"  width="700"/></p>
+<p align="center"><img src="./figure6.png" alt="figure6"  width="600"/></p>
 
 #### Impact of Automatic critique and Self-training
 The human evaluation assessed INSTRUCTSCORE's alignment both before and after self-training. Our experiments demonstrats significant reductions in both global and local failure modes. Notably, global failures saw a dramatic decrease of over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. The decrease in local failures further demonstrates improved consistency across the four evaluated fields.<!--Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences.--> While there was a minor uptick in one type of local failure (M6), this was linked to the conversion of some global failures into local ones, indicating a shift rather than a setback in model accuracy.
