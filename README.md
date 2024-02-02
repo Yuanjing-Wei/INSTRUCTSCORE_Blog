@@ -139,9 +139,9 @@ Furthermore, INSTRUCTSCORE outperformed all unsupervised learned metrics and eve
 
 Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
 
-<p align="center"><img src="./figure5.png" alt="figure5" width="750"/></p>
+<p align="center"><img src="./figure5.png" alt="figure5" width="750"/></p> -->
 
-### Quantitative Analysis
+<!--### Quantitative Analysis
 #### Non-English Language Performance
 INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models or supervised metrics like COMET22 and BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
 
