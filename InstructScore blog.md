@@ -90,15 +90,15 @@ INSTRUCTSCORE showed robust performance across various tasks and domains. It sig
 
 It also surpassed all unsupervised metrics in all domains except GPT-3.5 and GPT-4 baselines in the Chat domain. However, in the News domain, its performance lagged behind SOTA metrics like COMET22 and Metric-XXL, likely due to these models' specialized training on supervised data tailored for news content. <!--This gap can be attributed to the supervised data distribution in these models, specifically tailored for the News domain. -->
 
-<p align="center"><img src="./figure3.png" alt="figure3"/></p>
+<p align="center"><img src="./figure3.png" alt="figure3" width="700"/></p>
 
 Furthermore, INSTRUCTSCORE outperformed all unsupervised learned metrics and even besting BLEURT in three out of five dimensions. This highlights its capability for nuanced, multi-dimensional evaluation of NLG tasks. 
 
-<p align="center"><img src="./figure4.png" alt="figure4" width="200"/></p>
+<p align="center"><img src="./figure4.png" alt="figure4" width="700"/></p>
 
 Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
 
-<p align="center"><img src="./figure5.png" alt="figure5"/></p>
+<p align="center"><img src="./figure5.png" alt="figure5" width="700"/></p>
 
 ### Quantitative Analysis
 #### Non-English Language Performance
