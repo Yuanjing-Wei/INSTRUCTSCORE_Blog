@@ -3,7 +3,9 @@ title: INSTRUCTSCORE -- Revolutionizing Text Generation Evaluation with Explaina
 author: Yuanjing Wei
 date: 2024-02-01
 tag:
- - NLG Evaluation
+ - LLM Evaluation
+ - Pseudo Labeling
+ - Instruction Finetuning
 category:
  - NLP
 ---
