@@ -1,5 +1,5 @@
 ---
-title: INSTRUCTSCORE -- Revolutionizing Text Generation Evaluation with Explainable Feedback
+title: INSTRUCTSCORE -- Revolutionizing Text Generation Model Evaluation with Explainable Feedback
 author: Yuanjing Wei
 date: 2024-02-01
 tag:
