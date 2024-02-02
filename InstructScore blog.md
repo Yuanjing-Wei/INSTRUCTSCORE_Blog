@@ -94,7 +94,7 @@ It also surpassed all unsupervised metrics in all domains except GPT-3.5 and GPT
 
 Furthermore, INSTRUCTSCORE outperformed all unsupervised learned metrics and even besting BLEURT in three out of five dimensions. This highlights its capability for nuanced, multi-dimensional evaluation of NLG tasks. 
 
-<p align="center"><img src="./figure4.png" alt="figure4"/></p>
+<p align="center"><img src="./figure4.png" alt="figure4" width="200"/></p>
 
 Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
 
