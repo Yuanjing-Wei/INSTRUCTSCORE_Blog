@@ -14,6 +14,7 @@ Reading Time: About 10 minutes.
 <!-- more -->
 
 Paper：<https://arxiv.org/abs/2305.14282>
+Code: <https://github.com/xu1998hz/InstructScore_SEScore3>
 
 ## Introduction
 Text generation is a vital aspect of natural language processing (NLP), involving tasks like story generation, summarization, and dialogue systems. Evaluating these models has always been challenging, as traditional methods often lack interpretations of their predictions or fail to connect the scores to specific flaws in the generated text. Moreover, building interpretable models mimicking human evaluation often requires human-annotated data, which is scarce due to limited human resources and high annotation costs. INSTRUCTSCORE, a novel approach to evaluating text generation models, aims to bridge this gap by providing explainable feedback without relying on human-annotated data. This blog post delves into the mechanics of INSTRUCTSCORE and its implications for the NLP community.
@@ -99,29 +100,30 @@ Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks wi
 
 ### Quantitative Analysis
 #### Non-English Language Performance
-INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models, COMET22, or BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
+INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models or supervised metrics like COMET22 and BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
 
 <p align="center"><img src="./figure6.png" alt="figure6"/></p>
 
 #### Impact of Automatic critique and Self-training
-The human evaluation focused on the model’s alignment before and after self-training, demonstrating significant reductions in global and local failure modes. Notably, occurrences of global failures decreased by over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences. While there was a slight increase in one type of local failure (M6), this was attributed to the transformation of some global failures into local ones. 
+The human evaluation assessed INSTRUCTSCORE's alignment both before and after self-training. Our experiments demonstrats significant reductions in both global and local failure modes. Notably, global failures saw a dramatic decrease of over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. The decrease in local failures further demonstrates improved consistency across the four evaluated fields.<!--Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences.--> While there was a minor uptick in one type of local failure (M6), this was linked to the conversion of some global failures into local ones, indicating a shift rather than a setback in model accuracy.
 
 <p align="center"><img src="./figure7.png" alt="figure7"/></p>
 
-Importantly, these refinements led to a 0.106 absolute gain in human alignment scores, maintaining consistent performance in both Kendall and Pearson correlations. This enhancement indicates that INSTRUCTSCORE, post-refinement, is more aligned with human evaluators' assessments.
+Importantly, these refinements led to a 0.106 absolute gain (13.7% improvement) in human alignment scores, maintaining consistent performance in both Kendall and Pearson correlations. This enhancement indicates that INSTRUCTSCORE after our refinements is more aligned with human evaluators' assessments.
 
 <p align="center"><img src="./table6.png" alt="table6"/></p>
 
-Precision and recall of its annotations also improved markedly, with the precision of explanations increasing from 75.6% to 86.1%, and recall from 81.9% to 85.0%.
+Precision and recall of its annotations also improved markedly, with a 11.6% increasement of precision and 3.2% improvement in recall.
+<!--, with the precision of explanations increasing from 75.6% to 86.1%, and recall from 81.9% to 85.0%.-->
 
 <p align="center"><img src="./table7.png" alt="table7"/></p>
 
-### Summary
-The experiments underscored INSTRUCTSCORE's effectiveness in providing detailed and accurate evaluations across a range of natural language generation tasks. Its ability to adapt to different domains and tasks, coupled with its refined alignment with human expectations, highlights its potential as a versatile and reliable evaluation tool in the field of NLP.
+<!--### Summary
+The experiments highlighted INSTRUCTSCORE's proficiency in delivering precise and comprehensive evaluations for various natural language generation tasks. Its adaptability across multiple domains and tasks, along with enhanced alignment with human expectations, underscores its value as a flexible and dependable assessment instrument in NLP. Notably, the refinement through automatic feedback has achieved a closer correspondence with human standards, enhancing its effectiveness.-->
 
 
 ## Future Improvements
-While INSTRUCTSCORE represents a significant advancement in text generation evaluation, it is not without limitations. The complexity of the evaluation process means that it may require more resources and time compared to traditional methods. Additionally, the reliance on human judgment for certain aspects of the evaluation could introduce subjectivity into the process.
+<!--While INSTRUCTSCORE represents a significant advancement in text generation evaluation, it is not without limitations. The complexity of the evaluation process means that it may require more resources and time compared to traditional methods. Additionally, the reliance on human judgment for certain aspects of the evaluation could introduce subjectivity into the process.-->
 
 ### Expanding Multilingual Evaluation Capabilities
 Given the current limitation of using English instructions for evaluations in other languages, we plan to enhance the model's capabilities in mixed code generation and multilingual word alignment. This will involve exploring advanced pretraining and warm-up techniques to adapt more effectively to multilingual contexts.
