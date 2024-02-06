@@ -26,13 +26,15 @@ Text generation is a vital aspect of natural language processing (NLP), involvin
 
 To address this gap, the paper introduces INSTRUCTSCORE, a novel method for developing an explainable text generation metric without relying on human-annotated data. INSTRUCTSCORE aims to provide a fine-grained, explanation-based evaluation by pinpointing concrete error locations, identifying error types, assigning severity labels, and justifying the final score through both numerical values and natural language explanations. This is achieved by extracting latent evaluation knowledge from models like GPT-4 to create a synthetic dataset with structured explanations, identifying explanation failure modes, and refining the model based on automated feedback to optimize alignment with human judgment.
 
-<p align="center"><img src="./table23.png" alt="table23"/></p>
+<p align="center"><img src="./figure1.png" alt="figure1"/></p>
 
 The advent of a learned and explainable metric like INSTRUCTSCORE marks a pivotal advancement in natural language processing, emphasizing the critical need for transparency and targeted improvement in automated text evaluation. INSTRUCTSCORE's transparency allows developers to pinpoint and address specific model weaknesses directly, fostering trust in automated evaluations and enabling more efficient model refinements. Moreover, by offering detailed feedback without relying on scarce human-annotated data, INSTRUCTSCORE scales and adapts to new domains effortlessly, enriching educational resources and spurring research into the nuanced aspects of language generation. In essence, the introduction of explainable metrics not only propels the development of more sophisticated and user-aligned NLP applications but also deepens our understanding of the complex interplay between machine-generated text and human perception, marking a significant leap toward achieving truly human-like text evaluation and generation capabilities.
 
 <!--INSTRUCTSCORE, a novel approach to evaluating text generation models, aims to bridge this gap by providing explainable feedback without relying on human-annotated data. This blog will delve into the mechanics of INSTRUCTSCORE and its implications for the NLP community.-->
 
-<p align="center"><img src="./figure1.png" alt="figure1"/></p>
+Here is an example of INSTRUCTSCORE's input and outputs before and after refinement.
+
+<p align="center"><img src="./table23.png" alt="table23"/></p>
 
 <!--## INSTRUCTSCORE Overview
 (INSTRUCTSCORE stands out by providing explainable, detailed feedback on the performance of text generation models. Unlike conventional evaluation metrics that offer a single score, INSTRUCTSCORE provides both a numerical score and a human readable diagnostic report, including error location, error type, severity level, and score justification. This allows developers and researchers to understand not just how well their model is performing, but also in which specific areas it excels or needs improvement.
