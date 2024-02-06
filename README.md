@@ -156,46 +156,6 @@ Precision and recall of its annotations also improved markedly, with a 11.6% inc
 
 <p align="center"><img src="./table7.png" alt="table7" width="500"/></p>
 
-<!--### Main Results
-INSTRUCTSCORE showed robust performance across various tasks and domains. It significantly outperformed all other unsupervised metrics in 8 out of 9 tasks and was on par with or even surpassed some supervised metrics that trained over direct assessment data (DA).
-
-<p align="center"><img src="./table5.png" alt="table5"/></p>
-
-It also surpassed all unsupervised metrics in all domains except GPT-3.5 and GPT-4 baselines in the Chat domain. However, in the News domain, its performance lagged behind SOTA metrics like COMET22 and Metric-XXL, likely due to these models' specialized training on supervised data tailored for news content. <!--This gap can be attributed to the supervised data distribution in these models, specifically tailored for the News domain. -->
-
-<p align="center"><img src="./figure3.png" alt="figure3" width="700"/></p>
-
-Furthermore, INSTRUCTSCORE outperformed all unsupervised learned metrics and even besting BLEURT in three out of five dimensions. This highlights its capability for nuanced, multi-dimensional evaluation of NLG tasks. 
-
-<p align="center"><img src="./figure4.png" alt="figure4" width="700"/></p>
-
-Additionally, INSTRUCTSCORE demonstrated strong generalizability to new tasks with unseen data formats and criteria, as evidenced by its performance on the BAGEL benchmark. It achieved higher correlations than BLEURT and excelled in two of three new evaluation dimensions, underscoring its adaptability to diverse and novel NLG tasks.
-
-<p align="center"><img src="./figure5.png" alt="figure5" width="750"/></p> -->
-
-<!--### Quantitative Analysis
-#### Non-English Language Performance
-INSTRUCTSCORE showed solid performance in English-to-German translation, but it didn't surpass the 175B GPT3.5 models or supervised metrics like COMET22 and BLEURT20. This could be due to limited pretraining in non-English languages and the need for language alignment in mixed code text generation.
-
-<p align="center"><img src="./figure6.png" alt="figure6"  width="600"/></p>
-
-#### Impact of Automatic critique and Self-training
-The human evaluation assessed INSTRUCTSCORE's alignment both before and after self-training. Our experiments demonstrats significant reductions in both global and local failure modes. Notably, global failures saw a dramatic decrease of over 50%, highlighting substantial improvements in phrase alignment, error identification, and formatting. The decrease in local failures further demonstrates improved consistency across the four evaluated fields.<!--Consistency across the four evaluated fields also improved, as evidenced by advancements in all M occurrences.--> While there was a minor uptick in one type of local failure (M6), this was linked to the conversion of some global failures into local ones, indicating a shift rather than a setback in model accuracy.
-
-<p align="center"><img src="./figure7.png" alt="figure7"  width="700"/></p>
-
-Importantly, these refinements led to a 0.106 absolute gain (13.7% improvement) in human alignment scores, maintaining consistent performance in both Kendall and Pearson correlations. This enhancement indicates that INSTRUCTSCORE after our refinements is more aligned with human evaluators' assessments.
-
-<p align="center"><img src="./table6.png" alt="table6" width="500"/></p>
-
-Precision and recall of its annotations also improved markedly, with a 11.6% increasement of precision and 3.2% improvement in recall.
-<!--, with the precision of explanations increasing from 75.6% to 86.1%, and recall from 81.9% to 85.0%.-->
-
-<p align="center"><img src="./table7.png" alt="table7" width="500"/></p> -->
-
-<!--### Summary
-The experiments highlighted INSTRUCTSCORE's proficiency in delivering precise and comprehensive evaluations for various natural language generation tasks. Its adaptability across multiple domains and tasks, along with enhanced alignment with human expectations, underscores its value as a flexible and dependable assessment instrument in NLP. Notably, the refinement through automatic feedback has achieved a closer correspondence with human standards, enhancing its effectiveness.-->
-
 
 ## Future Improvements
 
