@@ -28,18 +28,13 @@ To address this gap, the paper introduces INSTRUCTSCORE, a novel method for deve
 
 <p align="center"><img src="./figure1.png" alt="figure1"/></p>
 
-The advent of a learned and explainable metric like INSTRUCTSCORE marks a pivotal advancement in natural language processing, emphasizing the critical need for transparency and targeted improvement in automated text evaluation. INSTRUCTSCORE's transparency allows developers to pinpoint and address specific model weaknesses directly, fostering trust in automated evaluations and enabling more efficient model refinements. Moreover, by offering detailed feedback without relying on scarce human-annotated data, INSTRUCTSCORE scales and adapts to new domains effortlessly, enriching educational resources and spurring research into the nuanced aspects of language generation. In essence, the introduction of explainable metrics not only propels the development of more sophisticated and user-aligned NLP applications but also deepens our understanding of the complex interplay between machine-generated text and human perception, marking a significant leap toward achieving truly human-like text evaluation and generation capabilities.
+The advent of a learned and explainable metric like INSTRUCTSCORE marks a pivotal advancement in natural language processing, emphasizing the critical need for transparency and targeted improvement in automated text evaluation. INSTRUCTSCORE's transparency allows developers to pinpoint and address specific model weaknesses directly, fostering trust in automated evaluations and enabling more efficient model refinements. Moreover, by offering detailed feedback without relying on scarce human-annotated data, INSTRUCTSCORE can easily scale and adapt to new domains, enriching educational resources and spurring research into the nuanced aspects of language generation. <!--In essence, the introduction of explainable metrics not only propels the development of more sophisticated and user-aligned NLP applications but also deepens our understanding of the complex interplay between machine-generated text and human perception, marking a significant leap toward achieving truly human-like text evaluation and generation capabilities.-->
 
 <!--INSTRUCTSCORE, a novel approach to evaluating text generation models, aims to bridge this gap by providing explainable feedback without relying on human-annotated data. This blog will delve into the mechanics of INSTRUCTSCORE and its implications for the NLP community.-->
 
 Here is an example of INSTRUCTSCORE's input and outputs before and after refinement.
 
 <p align="center"><img src="./table23.png" alt="table23"/></p>
-
-<!--## INSTRUCTSCORE Overview
-(INSTRUCTSCORE stands out by providing explainable, detailed feedback on the performance of text generation models. Unlike conventional evaluation metrics that offer a single score, INSTRUCTSCORE provides both a numerical score and a human readable diagnostic report, including error location, error type, severity level, and score justification. This allows developers and researchers to understand not just how well their model is performing, but also in which specific areas it excels or needs improvement.
-
-The core idea behind INSTRUCTSCORE is to align the evaluation process more closely with human judgment. Traditional metrics like BLEU or ROUGE rely heavily on reference texts and can often miss the subtleties of human-like text generation. INSTRUCTSCORE, on the other hand, employs a more holistic approach, considering factors that are more aligned with human perceptions of quality and fluency in text.)-->
 
 ## Problem Definition
 
@@ -74,7 +69,7 @@ The Exp-Generator is trained using this specially constructed data. We utilized 
 
 ###  Diagnostic Analysis -- Auto-Identifying Failure Modes of Metric Output
 
-The diagnostic report plays a crucial role in text quality explanations. However, it's recognized that the model might not always produce accurate explanations, leading to what are termed failure modes. These failure modes are classified into two categories: global and local as shown in table 2. Global failures affect all four fields of the diagnostic report - error type, location, major/minor classification, and explanation - while local failures impact only one specific field. Six scenarios M1-M6 for local failures and four scenarios G1-G4 for global failures are defined in table 2. A particular scenario arises when the method produces an annotation indicating the absence of errors. In such instances, it becomes essential to confirm the accuracy of this claim. If errors actually exist, the diagnostic report would be rendered inaccurate.
+The diagnostic report plays a crucial role in text quality explanations. However, it's recognized that the model might not always produce accurate explanations, leading to what are termed failure modes. These failure modes are classified into two categories: global and local as shown in table 2. Global failures affect all four fields of the diagnostic report - error type, location, severity level, and explanation - while local failures impact only one specific field. Six scenarios M1-M6 for local failures and four scenarios G1-G4 for global failures are defined in table 2. A particular scenario arises when the method produces an annotation indicating the absence of errors. In such instances, we prompt GPT-4 to verify whether the output contains any error. If errors actually exist, the diagnostic report would be rendered inaccurate.
 
 <p align="center"><img src="./table2.png" alt="table2"/></p>
 
