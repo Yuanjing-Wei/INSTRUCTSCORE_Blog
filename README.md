@@ -1,5 +1,5 @@
 ---
-title: INSTRUCTSCORE -- Revolutionizing Text Generation Model Evaluation with Explainable Feedback
+title: Unveiling INSTRUCTSCORE - Revolutionizing Text Evaluation with AI
 author: Yuanjing Wei
 date: 2024-02-01
 tag:
@@ -20,76 +20,40 @@ Paper：<https://arxiv.org/abs/2305.14282>
 
 Code: <https://github.com/xu1998hz/InstructScore_SEScore3>
 
-## Introduction
+Hey adventurers,
 
-Text generation is a vital aspect of natural language processing (NLP), involving tasks like story generation, summarization, and dialogue systems. Evaluating these models has always been challenging, as traditional methods often lack interpretations of their predictions or fail to connect the scores to specific flaws in the generated text. For example, metrics like BLEU and TER focus on surface form differences and often do not align with human judgment, while recent learned metrics such as BERTScore, BLEURT, COMET, and SEScore show better correlation with human evaluations but offer only a single numerical score without explaining the rationale behind these scores or identifying specific defects in the text. Moreover, building interpretable models mimicking human evaluation often requires human-annotated data, which is scarce due to limited human resources and high annotation costs. 
+Ever scratched your head wondering how to judge the quality of automatically generated text? How do we measure whether it truly captures the essence of what's intended? That's where INSTRUCTSCORE steps in. It’s not just another tool; it’s a groundbreaking approach to making sense of how well text generation systems are performing, providing clear feedback and insights like never before.
 
-To address this gap, the paper introduces INSTRUCTSCORE, a novel method for developing an explainable text generation metric without relying on human-annotated data. INSTRUCTSCORE aims to provide a fine-grained, explanation-based evaluation by pinpointing concrete error locations, identifying error types, assigning severity labels, and justifying the final score through both numerical values and natural language explanations. This is achieved by extracting latent evaluation knowledge from models like GPT-4 to create a synthetic dataset with structured explanations, identifying explanation failure modes, and refining the model based on automated feedback to optimize alignment with human judgment.
+## INSTRUCTSCORE is Like a Human Annotator!
+
+As we navigate the complexities of tasks like story generation, summarization, and more, the challenge of evaluation looms large. Traditional methods often leave us wanting more, lacking in clarity about how they arrive at their conclusions or failing to highlight specific areas needing attention. And while human evaluation offers depth, it comes with its own set of challenges, notably the scarcity of resources and high costs.
+
+Enter INSTRUCTSCORE. Imagine an evaluator that not only scores text but also explains why, in a way that feels almost human. It identifies errors, categorizes them, assigns severity, and provides explanations—all without the need for expensive, time-consuming human-annotated data.
+
+The journey to creating INSTRUCTSCORE was marked by innovative steps, from synthesizing explanations using GPT-4 to refining the model based on feedback for better accuracy. This approach has made it possible to offer detailed feedback across various domains, empowering developers to make targeted improvements and advancing the field of natural language processing.
 
 <p align="center"><img src="./figure1.png" alt="figure1"/></p>
 
-The advent of a learned and explainable metric like INSTRUCTSCORE marks a pivotal advancement in natural language processing, emphasizing the critical need for transparency and targeted improvement in automated text evaluation. INSTRUCTSCORE's transparency allows developers to pinpoint and address specific model weaknesses directly, fostering trust in automated evaluations and enabling more efficient model refinements. Moreover, by offering detailed feedback without relying on scarce human-annotated data, INSTRUCTSCORE can easily scale and adapt to new domains, enriching educational resources and spurring research into the nuanced aspects of language generation. <!--In essence, the introduction of explainable metrics not only propels the development of more sophisticated and user-aligned NLP applications but also deepens our understanding of the complex interplay between machine-generated text and human perception, marking a significant leap toward achieving truly human-like text evaluation and generation capabilities.-->
 
-<!--INSTRUCTSCORE, a novel approach to evaluating text generation models, aims to bridge this gap by providing explainable feedback without relying on human-annotated data. This blog will delve into the mechanics of INSTRUCTSCORE and its implications for the NLP community.-->
+## Diving Deeper: From Student to Master
 
-Here is an example of INSTRUCTSCORE's input and outputs before and after refinement.
-
-<p align="center"><img src="./table23.png" alt="table23"/></p>
-
-## Problem Definition
-
-The objective of INSTRUCTSCORE is to develop an explainable metric model that not only predicts the quality score of candidate text in relation to a reference but also generates a diagnostic report in natural language. INSTRUCTSCORE evaluates the quality of a generated text (x) with respect to a reference (r) by producing a detailed diagnostic report. This report includes specifics about error location (l), error type (t), severity level (se), and explanation (e) associated with each identified error. This aligns the evaluation process more closely with human judgment, allowing developers and researchers to understand not just how well their model is performing, but also in which specific areas it excels or needs improvement. INSTRUCTSCORE comprises two main components: a score predictor and an explanation generator (Exp-Generator). The Exp-Generator is tasked with learning a function f: (x, r) → {(l, t, se, e)i}^n_i=1, which identifies n number of errors in the text. However, acquiring human-annotated mapping data for most text-generation tasks is challenging due to limited resources and high annotation costs. INSTRUCTSCORE addresses this by proposing a data construction method to automatically generate high-quality pseudo data for learning the function f.
-
-## Methodology
-
-The implementation of INSTRUCTSCORE unfolds in three key steps:
-
-1. Explanation Synthesis and Instruction Finetuning: Gleaning explainable knowledge from a large-scale, instruction-following model (GPT-4) to guide the training of the Exp-Generator.
-2. Diagnostic Analysis: Evaluating diagnostic reports to pinpoint failure modes and utilizing GPT-4 feedback to generate alignment scores, which aid in identifying the most accurate diagnostic reports.
-3. Refinement: Employing the chosen reports to further fine-tune the Exp-Generator, thereby improving its accuracy and reliability.
-
-<!--Overall, the process consists of the following steps:
-
-1. Extracting explainable knowledge from a large-scale, instruction-following model to train the Exp-Generator.
-2. Analyzing the generated diagnostic reports to identify failure modes, and converting feedback from GPT-4 into alignment scores, guiding the selection of the most accurate diagnostic reports.
-3. Fine-tuning Exp-Generator using selected reports, refining its output for enhanced accuracy and reliability.-->
-<!--3. The generated diagnostic reports are then analyzed to identify common failure modes, which are further feedbackevaluated by GPT-4. Feedback from GPT-4 is converted into alignment scores, guiding the selection of the most accurate diagnostic reports.-->
+Here's a deep dive into the genesis and evolution of INSTRUCTSCORE, structured in three pivotal phases:
 
 <p align="center"><img src="./figure2.png" alt="figure2"/></p>
 
-### Explanation Synthesis and Instruction Finetuning
+### Harnessing GPT-4's Power: 
 
-In this step, GPT-4 is leveraged to extract representative explainable knowledge that can greatly contribute to the subsequent Exp-Generator learning process. We compile a diverse corpus of sentences across various domains, which serves as the foundation for error injection. GPT-4 is then prompted with specified number of errors, error types, and severity labels to synthesize a candidate output with the specified error descriptions and an explanation for this error annotation. This method ensures a rich dataset reflective of the intricate relationship between the generated text, the reference, and the identified errors, thereby facilitating the training of our Exp-Generator. 
+Picture this: We use GPT-4 as the teacher to teach the student, the Exp-Generator (LLaMA), to decode the secrets of language. We start by collecting a bunch of sentences from different subjects, each with its own set of mistakes. GPT-4 then goes through these sentences, identifying the errors and explaining them. This not only builds a textbook for the Exp-Generator but also challenges it to think deeper, understand better.
 
-<p align="center"><img src="./table1.png" alt="table1"/></p>
+But we don't stop there. To make sure INSTRUCTSCORE really understands the text and isn't just memorizing answers, we also have GPT-4 tweak the original sentences a bit. This makes our training data even more valuable, showing INSTRUCTSCORE how to deal with variations in language.
 
-In cases where the evaluation task involves multiple aspects, different error types are allocated to each specific dimension. To reduce the model's dependence on the lexical and structural similarities between the generated text and the original, we direct GPT-4 to rephrase the original text, thus creating a pseudo-reference sentence. This procedure creates synthetic data that demonstrates the relationship between the variables (x, y) and (t, l, se, e).
+Now, it's time for INSTRUCTSCORE to hit the books. Using this dataset, it practices spotting errors, figuring out what type they are, and explaining them. We use a model called LLaMA for this because it's great at understanding and generating text. The goal is for INSTRUCTSCORE to get really good at explaining why something in the text might be wrong, making it a top-notch evaluator.
 
-The Exp-Generator is trained using this specially constructed data. We utilized LLaMA for the Exp-Generator due to its open-source availability and its efficacy in both comprehension and generation tasks. The training involves feeding the Exp-Generator with the pseudo-reference (y) and the candidate text (x) as inputs, and it outputs a diagnostic report detailing the error type (t), location (l), severity (se), and explanation (e). An illustrative example of this can be seen in Figure 2. The training objective is mathematically formulated as L(t, l, se, e, x, y) = − log P(t, l, se, e|y, x; θ), where θ represents the trainable parameters of the Exp-Generator.
+In short, we're not just teaching INSTRUCTSCORE to recognize when text goes off track; we're training it to explain why, turning it into a smart tool for checking and improving written content.
 
-###  Diagnostic Analysis -- Auto-Identifying Failure Modes of Metric Output
+###  Refinement with Meta-Feedback
 
-The diagnostic report plays a crucial role in text quality explanations. However, it's recognized that the model might not always produce accurate explanations, leading to what are termed failure modes. These failure modes are classified into two categories: global and local as shown in table 2. Global failures affect all four fields of the diagnostic report - error type, location, severity level, and explanation - while local failures impact only one specific field. Six scenarios M1-M6 for local failures and four scenarios G1-G4 for global failures are defined in table 2. A particular scenario arises when the method produces an annotation indicating the absence of errors. In such instances, we prompt GPT-4 to verify whether the output contains any error. If errors actually exist, the diagnostic report would be rendered inaccurate.
-
-<p align="center"><img src="./table2.png" alt="table2"/></p>
-
-Table 3 demonstrates one failure mode M4, where error locations in explanation can not refer to the output text. The phrase "whole family loves reading" does not appear in the generated text; rather, it is found in the reference text.
-
-<p align="center"><img src="./table3.png" alt="table3"/></p>
-
-Identifying the failure modes ideally would require human annotation but is not feasible for every instance. Instead, GPT-4’s capabilities in information extraction, parsing, and semantic understanding are leveraged to transform complex queries into simpler yes/no questions, aiding in the identification of these failure modes. Here is a detailed example of the prompt query for checking M1-M6 and G1-G4:
-
-<p align="center"><img src="./table4.png" alt="table4"/></p>
-
-To illustrate, GPT-4 is prompted to dissect the explanations into pairs of incorrect and correct phrases and identify the error span within the text. This process helps in verifying the accuracy of error locations and explanations and identifying instances of multiple errors within a single location. The identified failure modes are then translated into alignment scores, providing a quantitative measure of the diagnostic report's accuracy. To tackle the issues of hallucinated error locations (M3) and explanations (M4), we ensure the identified error spans are actually referenced within the candidate sentence. When an error annotation comprises multiple pairs of incorrect and correct phrases, it suggests the presence of several errors within a single location (G4). In addressing G1, our initial step is to ascertain whether the marked incorrect phrase truly constitutes an error. We also confirm whether the suggested revision is incorporated into the output. For addressing the remaining M and G categories, we craft specialized prompt queries directed at GPT-4. 
-
-Upon receiving feedback on local and global failure modes from GPT-4, we translate this feedback into alignment scores, applying a binary scoring system to each diagnostic output field. Specifically, a local error detection results in a zero score for its respective field, whereas a global error detection leads to zero scores across all four fields associated with that error annotation. Consequently, the overall score of a diagnostic report is calculated as the ratio of correctly identified fields to the total number of fields, resulting in an alignment score ranging from 0 to 1. For instance, consider a candidate sentence annotated with four errors, encompassing four fields each: error type, location, severity (major/minor), and explanation, summing up to 16 fields in total. Should there be one global error and one local error identified, the alignment score assigned would be 11/16. This structured approach allows for a detailed and systematic evaluation of the diagnostic report's accuracy, enhancing the reliability of INSTRUCTSCORE's text quality assessments.
-
-### Refinement with Meta-Feedback
-
-The alignment scores generated by GPT-4 are used to further fine-tune the Exp-Generator. Specifically, the model input can be expressed as hypothesis h_i with reference k_i. For each input pair (h_i, k_i), the model employs top p sampling to sample multiple potential diagnostic outputs, labeled as {o1, o2, ..., on}. The diagnostic output that yields the best alignment score, as determined by GPT-4's feedback, is then selected for further refinement of the Exp-Generator. This output, denoted as o_aligned = {t_aligned, l_aligned, se_aligned, e_aligned}, is used to fine-tune the Exp-Generator, enhancing its ability to produce accurate diagnostic reports.
-
-This self-training and automatic critique pipeline is designed to improve the accuracy of the diagnostic reports. By aligning these reports more closely with human evaluation, the model aims to reduce failure modes and achieve better alignment with human judgments. The refinement process is mathematically defined as L(o_aligned, x, y) = − log P(o_aligned|y, x; θ), where θ represents the trainable parameters of the Exp-Generator.
+Just like students learning through trial and error, our Exp-Generator sometimes misses the mark in its text evaluations. This is where the teacher - GPT-4, comes to rescue. It provides feedbacks on Exp-Generator's output which is then turned to alignment scores. The alignment scores are used to further fine-tune the Exp-Generator, enhancing its ability to produce accurate diagnostic reports.
 
 ## Experiment
 
@@ -148,27 +112,13 @@ The process also significantly improves the precision and recall of INSTRUCTSCOR
 <p align="center"><img src="./table7.png" alt="table7" width="500"/></p>
 
 
-## Future Improvements
+## The Impact and Future of INSTRUCTSCORE
 
-<!--While INSTRUCTSCORE represents a significant advancement in text generation evaluation, it is not without limitations. The complexity of the evaluation process means that it may require more resources and time compared to traditional methods. Additionally, the reliance on human judgment for certain aspects of the evaluation could introduce subjectivity into the process.-->
+INSTRUCTSCORE's introduction marks a significant milestone in natural language processing, providing a level of transparency and specificity in text evaluation that was previously unattainable. Its ability to offer detailed feedback without relying on human-annotated data means it can scale and adapt quickly, pushing the boundaries of what's possible in language generation.
 
-### Expanding Multilingual Evaluation Capabilities
+As we look ahead, the journey doesn't stop here. Plans are in place to expand its capabilities, including enhancing its multilingual evaluation capacity and refining the model with advanced techniques like reinforcement learning from human feedback. The goal is clear: to continue improving INSTRUCTSCORE, making it an even more powerful tool for understanding and enhancing the art of text generation.
 
-Given the current limitation of using English instructions for evaluations in other languages, we plan to enhance the model's capabilities in mixed code generation and multilingual word alignment. This will involve exploring advanced pretraining and warm-up techniques to adapt more effectively to multilingual contexts.
-
-### Investigating the Impact of Model Size
-
-Our current computational resources limit the ability to fully explore how model size affects performance. Future research will delve into the scaling law of model sizes to understand how larger models might influence INSTRUCTSCORE's performance, particularly in reducing failure modes.
-
-### Refinement Process Enhancement
-
-While the current refinement process has proved efficient in aligning INSTRUCTSCORE with human judgments, there's room for improvement. Future studies will explore more advanced techniques, such as incorporating human feedback through reinforcement learning. This approach aims to integrate feedback more effectively into the training pipeline, potentially enhancing the overall performance and accuracy of INSTRUCTSCORE.
-
-## Conclusion
-
-INSTRUCTSCORE is a promising development in the field of NLP, offering a more nuanced and detailed way to evaluate text generation models. Its focus on explainability and fine-grained feedback not only aids in model development but also contributes to our understanding of natural language processing. As the field of AI continues to evolve, approaches like INSTRUCTSCORE will be crucial in bridging the gap between human and machine-generated text.
-
-We've introduced INSTRUCTSCORE, a novel framework for explainable text generation evaluation, effectively addressing the limitations of current black-box metrics. Our approach, which regularizes explanations through defined failure modes, has demonstrated impressive adaptability across various domains, tasks, and dimensions, surpassing other general metrics. Notably, the refinement process utilizing automatic feedback significantly improved human alignment, precision, and recall by 13.7%, 11.6%, and 3.2%, respectively, ensuring closer alignment with human evaluations. Committed to supporting further research, we've made INSTRUCTSCORE publicly available and open-sourced all related data and codes.
+INSTRUCTSCORE stands as a testament to the power of AI in bridging the gap between human and machine-generated text, offering a glimpse into a future where machines not only generate text but understand its nuances deeply, akin to human insight. As we continue to explore and refine this technology, the potential for innovation in natural language processing is boundless.
 
 ## References
 
