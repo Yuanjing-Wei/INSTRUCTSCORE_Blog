@@ -37,7 +37,7 @@ The journey to creating INSTRUCTSCORE was marked by innovative steps, from synth
 
 ## Diving Deeper: From Student to Master
 
-Here's a deep dive into the genesis and evolution of INSTRUCTSCORE, structured in three pivotal phases:
+Here's a deep dive into the genesis and evolution of INSTRUCTSCORE:
 
 <p align="center"><img src="./figure2.png" alt="figure2"/></p>
 
@@ -47,13 +47,40 @@ Picture this: We use GPT-4 as the teacher to teach the student, the Exp-Generato
 
 But we don't stop there. To make sure INSTRUCTSCORE really understands the text and isn't just memorizing answers, we also have GPT-4 tweak the original sentences a bit. This makes our training data even more valuable, showing INSTRUCTSCORE how to deal with variations in language.
 
-Now, it's time for INSTRUCTSCORE to hit the books. Using this dataset, it practices spotting errors, figuring out what type they are, and explaining them. We use a model called LLaMA for this because it's great at understanding and generating text. The goal is for INSTRUCTSCORE to get really good at explaining why something in the text might be wrong, making it a top-notch evaluator.
+Now, it's time for INSTRUCTSCORE to hit the books. Using this dataset, it practices spotting errors, figuring out what type they are, and explaining them. We use LLaMA for this because it's great at understanding and generating text. The goal is for INSTRUCTSCORE to get really good at explaining why something in the text might be wrong, making it a top-notch evaluator.
 
 In short, we're not just teaching INSTRUCTSCORE to recognize when text goes off track; we're training it to explain why, turning it into a smart tool for checking and improving written content.
 
 ###  Refinement with Meta-Feedback
 
 Just like students learning through trial and error, our Exp-Generator sometimes misses the mark in its text evaluations. This is where the teacher - GPT-4, comes to rescue. It provides feedbacks on Exp-Generator's output which is then turned to alignment scores. The alignment scores are used to further fine-tune the Exp-Generator, enhancing its ability to produce accurate diagnostic reports.
+
+Let's take a peek into INSTRUCTSCORE's journey of evolving from a student to a master through an illustrative example:
+
+#### Initial Input to INSTRUCTSCORE:
+We tasked INSTRUCTSCORE with analyzing a translation that read:
+"Reference: Washing hands with air, diagnosing disease through breath, and accurately seeking for source of smog; last night, a series of creative academic achievements were awarded at the opening ceremony of the 2016 Annual Academic Conference of Zhejiang University.
+Output: Wash hands with air, judge diseases, accurately search for the source of fog Yesterday evening, at the opening ceremony of the 2016 academic annual meeting of Zhejiang University, a series of academic achievements were recognized."
+
+#### INSTRUCTSCORE's Initial Feedback:
+Initially, INSTRUCTSCORE pinpointed 3 errors (we only show the last one here), identifying their nature and severity but stumbled in its explanations:
+"Your Translation contains 3 errors:
+...
+Error type 3: Incorrect translation includes information not present in the correct translation 
+Major/minor: Minor
+Error location 3: "academic annual meeting"
+Explanation for error 3: The incorrect translation adds the word "annual" to the phrase "academic meeting," which is not present in the correct translation. However, this does not significantly change the meaning of the sentence."
+
+While INSTRUCTSCORE could locate errors and assess their importance, its rationale needed refinement.
+
+#### After the Refinement:
+After refinement, INSTRUCTSCORE's ability to elucidate errors took a leap forward, offering improved, precise explanations:
+"Your Translation contains 3 errors:
+...
+Error type 3: Incorrect translation does not accurately represent the correct translation 
+Major/minor: Minor
+Error location 3: "academic annual meeting"
+Explanation for error 3: The incorrect translation uses "academic annual meeting" instead of "academic annual confer- ence," which is a minor error that does not significantly change the meaning but will be noticed."
 
 ## Experiment
 
@@ -69,9 +96,9 @@ We used GPT-4 as our base for implicit evaluation knowledge and LLaMA-7B for tra
 
 #### 1) What is the performance across various tasks within the English language?
 
-For this task, we tested INSTRUCTSCORE at various tasks, including WMT22 (Machine Translation), WebNLG (Table-to-text), Flicker3k (Captioning), BAGEL (Keyword-to-text) and Commongen (Commonsense text generation). <!--INSTRUCTSCORE showed robust performance across various tasks and domains. It significantly outperformed all other unsupervised metrics in 8 out of 9 tasks and was on par with or even surpassed some supervised metrics that trained over direct assessment data (DA).--> Table 5 demonstrates that INSTRUCTSCORE considerably surpasses all other unsupervised metrics in eight out of nine categories, securing the highest overall ranking. These enhancements are statistically validated through William’s pairwise significance test, with a p-value less than 0.05, underscoring their reliability. Remarkably, INSTRUCTSCORE also exceeds the performance of previously established supervised metrics that were trained using direct assessment data (DA), outperforming BLEURT20 in six out of nine categories. When compared to the GPT4 baseline, INSTRUCTSCORE shows superior performance against GEMBA-GPT4, with improvements of 0.021 in Kendall and 0.145 in Pearson correlation coefficients. The notable difference in Pearson correlation is attributed to a significant number of ties generated by GEMBA-GPT4, which may influence the accuracy of Kendall correlation results. Furthermore, INSTRUCTSCORE demonstrates competitive performance relative to supervised metrics like MATESE, COMET22, and Metric XXL, which were trained using extensive human rating data (DA and MQM), with an average gap of 0.012 in Kendall correlation and 0.045 in Pearson correlation.
+For this task, we tested INSTRUCTSCORE at various tasks, including WMT22 (Machine Translation), WebNLG (Table-to-text), Flicker3k (Captioning), BAGEL (Keyword-to-text) and Commongen (Commonsense text generation). INSTRUCTSCORE showed robust performance across various tasks and domains. It significantly outperformed all other unsupervised metrics in 8 out of 9 tasks and was on par with or even surpassed some supervised metrics that trained over direct assessment data (DA). <!-- Table 5 demonstrates that INSTRUCTSCORE considerably surpasses all other unsupervised metrics in eight out of nine categories, securing the highest overall ranking. These enhancements are statistically validated through William’s pairwise significance test, with a p-value less than 0.05, underscoring their reliability. Remarkably, INSTRUCTSCORE also exceeds the performance of previously established supervised metrics that were trained using direct assessment data (DA), outperforming BLEURT20 in six out of nine categories. When compared to the GPT4 baseline, INSTRUCTSCORE shows superior performance against GEMBA-GPT4, with improvements of 0.021 in Kendall and 0.145 in Pearson correlation coefficients. The notable difference in Pearson correlation is attributed to a significant number of ties generated by GEMBA-GPT4, which may influence the accuracy of Kendall correlation results. Furthermore, INSTRUCTSCORE demonstrates competitive performance relative to supervised metrics like MATESE, COMET22, and Metric XXL, which were trained using extensive human rating data (DA and MQM), with an average gap of 0.012 in Kendall correlation and 0.045 in Pearson correlation. 
 
-<p align="center"><img src="./table5.png" alt="table5"/></p>
+<p align="center"><img src="./table5.png" alt="table5"/></p> -->
 
 #### 2) What is the performance across different domains within the same task?
 
@@ -98,18 +125,7 @@ We evaluated our approach to English-to-German translations in order to investig
 
 #### 6) Can we align the diagnostic report with human expectations without requiring extensive human efforts?
 
-We conduct human evaluation to assess our metric’s alignment before and after self-training. The evaluation detail for human rators are shown in table 8.
-
-<p align="center"><img src="./table8.png" alt="table8"  width="700"/></p>
-
-The human evaluation assessed INSTRUCTSCORE's alignment both before and after self-training. As depicted in Figure 7, INSTRUCTSCORE, following automatic critique and refinement, notably reduces the majority of global and local failure modes. Noteworthy is the more than 50% reduction in all global failure occurrences, illustrating significant enhancements in phrase alignment, error identification, and formatting consistency across the four fields. An observed slight increase in M6 failures is attributed to the reclassification of some global failures as local. Table 6 reveals that INSTRUCTSCORE achieves a 0.106 absolute gain in human scores, maintaining comparable performance in both Kendall and Pearson correlations. 
-
-<p align="center"><img src="./figure7.png" alt="figure7"  width="500"/></p>
-<p align="center"><img src="./table6.png" alt="table6" width="500"/></p>
-
-The process also significantly improves the precision and recall of INSTRUCTSCORE’s annotations, as verified through human evaluation involving three annotators. Precision, defined as the number of correctly annotated error fields divided by the total number of error fields labeled by INSTRUCTSCORE, and recall, the number of correctly annotated fields over the sum of these plus missed error fields, both saw substantial improvements post-refinement. Specifically, precision increased by 11.6% and recall by 3.2%, with the refinement process notably enhancing explanation precision from 75.6% to 86.1% and recall from 81.9% to 85.0%. These improvements underscore that 89.4% of INSTRUCTSCORE’s output post-refinement is accurate, and it successfully identifies 85.6% of errors, showcasing the effectiveness of the automatic critique and self-training in elevating INSTRUCTSCORE’s evaluation accuracy.
-
-<p align="center"><img src="./table7.png" alt="table7" width="500"/></p>
+The human evaluation assessed INSTRUCTSCORE's alignment both before and after self-training. INSTRUCTSCORE, following automatic critique and refinement, notably reduces the majority of global and local failure modes. Noteworthy is the more than 50% reduction in all global failure occurrences, illustrating significant enhancements in phrase alignment, error identification, and formatting consistency across the four fields. 
 
 
 ## The Impact and Future of INSTRUCTSCORE
